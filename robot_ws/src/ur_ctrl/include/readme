@@ -1,0 +1,41 @@
+utility files:
+utils_behavior.hpp(important)
+class arm_com:
+	data: joint, cart, force/torque
+		usage: continuous data log; continuous filter with outer interface
+		data flow:
+			source->inner vector->data log
+					     ->outer interface
+					     ->inner function with force control
+	data related functions: start_zero, stop_zero
+	functions: get data
+	functions: get FK, IK, etc
+	functions: all kinds of move(move**); five kinds of movement primitives
+		in which, movement primitives' two kind:
+			one core function with outer buffer and a judgement trigger
+				buffer needs the core function's time or position
+			will not used: one long function completed process
+			
+			with update law or without update law?
+				without, but functions can return the time-pos-for data for outer update
+		function flow:
+			all kinds of move->outer force control functions
+			all kinds of movement primitives->behavior tree
+		movement primitives details:
+			buffer->core function->middle data to blackboard->outer trigger->buffer->...
+			if triggered, clear buffer.
+	functions: movement primitives' data obtain/erase for outer trigger
+	
+utils_object.hpp
+function button_trigger
+function knob_trigger
+function emerg_trigger
+function emerg_push_trigger
+	param/input update in trigger?
+		without, too complex
+		
+		
+		
+		
+OR
+knowledge graph and behavior tree used for show, real process need reform
